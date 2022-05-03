@@ -13,7 +13,10 @@ namespace EAD_Assignment.Models
 
         public string Name { get; set; }
 
-        //[ForeignKey("Category")]
+        //[ForeignKey("Category")] -> Khoa ngoai bang article
         //public ICollection<Articles> Articles { get; set; }
+
+        //Duoi sau cung cua link VD: /the-thao
+        public string SubLink { get; set; }
     }
 }

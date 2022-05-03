@@ -189,6 +189,10 @@
     <Compile Include="Migrations\202205031017511_fix_again3.designer.cs">
       <DependentUpon>202205031017511_fix_again3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205031325015_add_subLink.cs" />
+    <Compile Include="Migrations\202205031325015_add_subLink.designer.cs">
+      <DependentUpon>202205031325015_add_subLink.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Articles.cs" />
     <Compile Include="Models\Categories.cs" />
@@ -196,6 +200,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -266,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205031017511_fix_again3.resx">
       <DependentUpon>202205031017511_fix_again3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205031325015_add_subLink.resx">
+      <DependentUpon>202205031325015_add_subLink.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
