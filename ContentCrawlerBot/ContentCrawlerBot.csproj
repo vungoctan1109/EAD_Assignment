@@ -84,10 +84,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbHelper.cs" />
-    <Compile Include="Models\Articles.cs" />
-    <Compile Include="Models\Categories.cs" />
-    <Compile Include="Models\Sources.cs" />
+    <Compile Include="Util\DbHelper.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Source.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

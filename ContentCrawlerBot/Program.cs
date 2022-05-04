@@ -41,7 +41,7 @@ namespace ContentCrawlerBot
                         var articleTitle = doc.DocumentNode.QuerySelector("h1.title-detail").InnerText;
                         var articleContent = doc.DocumentNode.QuerySelector("p.description").InnerText;
                         var articleImage = doc.DocumentNode.QuerySelector("img").Attributes["src"].Value;
-                        var article = new Articles()
+                        var article = new Article()
                         {
                             Url = link,
                             Title = articleTitle,
@@ -50,7 +50,7 @@ namespace ContentCrawlerBot
                         };
                         if (article.Url != DbHelper.checkExistUrl(article.Url, cnn))
                         {
-                            SqlCommand command = new SqlCommand("INSERT INTO Articles (Url, Title, Detail, ImageUrl) VALUES (@url, @title, @detail, @image)", cnn);
+                            SqlCommand command = new SqlCommand("INSERT INTO Articles (Url, Title, Detail, ImageUrl, CategoryId) VALUES (@url, @title, @detail, @image, 1)", cnn);
                             command.Prepare();
                             command.Parameters.AddWithValue("@url", article.Url);
                             command.Parameters.AddWithValue("@title", article.Title);

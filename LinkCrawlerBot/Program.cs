@@ -13,7 +13,7 @@ namespace LinkCrawlerBot
     {
         private static void Main(string[] args)
         {
-            var url = "https://vnexpress.net/the-thao";
+            var url = "https://vnexpress.net/khoa-hoc";
             var web = new HtmlWeb();
             HtmlDocument doc = web.Load(url);
             var nodeList = doc.DocumentNode.QuerySelectorAll("h3.title-news a");
