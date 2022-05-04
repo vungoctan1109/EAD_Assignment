@@ -193,6 +193,10 @@
     <Compile Include="Migrations\202205031325015_add_subLink.designer.cs">
       <DependentUpon>202205031325015_add_subLink.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205041129281_add_relationship.cs" />
+    <Compile Include="Migrations\202205041129281_add_relationship.designer.cs">
+      <DependentUpon>202205041129281_add_relationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Articles.cs" />
     <Compile Include="Models\Categories.cs" />
@@ -274,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205031325015_add_subLink.resx">
       <DependentUpon>202205031325015_add_subLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205041129281_add_relationship.resx">
+      <DependentUpon>202205041129281_add_relationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
