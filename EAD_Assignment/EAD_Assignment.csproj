@@ -168,6 +168,10 @@
     <Compile Include="Migrations\202205041413033_InitDatabase.Designer.cs">
       <DependentUpon>202205041413033_InitDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205041129281_add_relationship.cs" />
+    <Compile Include="Migrations\202205041129281_add_relationship.designer.cs">
+      <DependentUpon>202205041129281_add_relationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Category.cs" />
@@ -231,6 +235,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202205041413033_InitDatabase.resx">
       <DependentUpon>202205041413033_InitDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205041129281_add_relationship.resx">
+      <DependentUpon>202205041129281_add_relationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
