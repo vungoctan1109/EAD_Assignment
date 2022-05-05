@@ -13,16 +13,15 @@ namespace EAD_Assignment.Data
         {
         }
 
-        public DbSet<Articles> Articles { get; set; }
-        public DbSet<Sources> Sources { get; set; }
-        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Source> Sources { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Articles>().Property(m => m.CreatedAt).IsOptional();
-            modelBuilder.Entity<Articles>().Property(m => m.UpdatedAt).IsOptional();
-            modelBuilder.Entity<Articles>().Property(m => m.Status).IsOptional();
-            modelBuilder.Entity<Articles>().Property(m => m.Category).IsOptional();
+            modelBuilder.Entity<Article>().Property(m => m.CreatedAt).IsOptional();
+            modelBuilder.Entity<Article>().Property(m => m.UpdatedAt).IsOptional();
+            modelBuilder.Entity<Article>().Property(m => m.Status).IsOptional();
             base.OnModelCreating(modelBuilder);
         }
     }
