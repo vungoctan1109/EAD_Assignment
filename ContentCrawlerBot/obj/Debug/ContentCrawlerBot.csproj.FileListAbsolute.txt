@@ -61,3 +61,4 @@ C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\obj\Debug\ContentCrawlerBot
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\obj\Debug\ContentCrawlerBot.csproj.CopyComplete
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\obj\Debug\ContentCrawlerBot.exe
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\obj\Debug\ContentCrawlerBot.pdb
+C:\Users\Admin\source\repos\EAD_Assignment\ContentCrawlerBot\obj\Debug\ContentCrawlerBot.csproj.AssemblyReference.cache

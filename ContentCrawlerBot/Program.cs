@@ -46,16 +46,20 @@ namespace ContentCrawlerBot
                             Url = link,
                             Title = articleTitle,
                             Detail = articleContent,
-                            ImageUrl = articleImage
+                            ImageUrl = articleImage,
+                            UpdatedAt = DateTime.Now,
+                            CreatedAt = DateTime.Now
                         };
                         if (article.Url != DbHelper.checkExistUrl(article.Url, cnn))
                         {
-                            SqlCommand command = new SqlCommand("INSERT INTO Articles (Url, Title, Detail, ImageUrl, CategoryId) VALUES (@url, @title, @detail, @image, 1)", cnn);
+                            SqlCommand command = new SqlCommand("INSERT INTO Articles (Url, Title, Detail, ImageUrl, CategoryId, CreatedAt, UpdatedAt, Status) VALUES (@url, @title, @detail, @image, 1, @createdAt, @updatedAt, 1)", cnn);
                             command.Prepare();
                             command.Parameters.AddWithValue("@url", article.Url);
                             command.Parameters.AddWithValue("@title", article.Title);
                             command.Parameters.AddWithValue("@detail", article.Detail);
                             command.Parameters.AddWithValue("@image", article.ImageUrl);
+                            command.Parameters.AddWithValue("@createdAt", article.CreatedAt);
+                            command.Parameters.AddWithValue("@updatedAt", article.UpdatedAt);
                             command.ExecuteNonQuery();
                             Console.WriteLine("Added article {0} to database.", article.Title);
                         }
