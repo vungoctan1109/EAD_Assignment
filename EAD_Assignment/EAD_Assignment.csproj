@@ -185,6 +185,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\img\abstract-background-breaking-news-hd-i-43240733.jpg" />
     <Content Include="Content\img\ads-1.jpg" />
     <Content Include="Content\img\ads-2.jpg" />
     <Content Include="Content\img\logo.png" />
