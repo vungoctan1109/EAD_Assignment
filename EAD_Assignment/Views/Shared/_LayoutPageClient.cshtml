@@ -20,7 +20,10 @@
     <link href="Content/lib/slick/slick-theme.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="Content/css/style.css" rel="stylesheet">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/style.css")" media="screen" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -53,7 +56,7 @@
                 <div class="col-lg-3 col-md-4">
                     <div class="b-logo">
                         <a href="index.html">
-                            <img src="Content/img/logo.png" alt="Logo">
+                            <img src="~/Content/img/logo.png" alt="Logo">
                         </a>
                     </div>
                 </div>
@@ -211,10 +214,10 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="Content/lib/easing/easing.min.js"></script>
-    <script src="Content/lib/slick/slick.min.js"></script>
+    <script src="~/Content/lib/easing/easing.min.js"></script>
+    <script src="~/Content/lib/slick/slick.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="Content/js/main.js"></script>
+    <script src="~/Content/js/main.js"></script>
 </body>
 </html>
