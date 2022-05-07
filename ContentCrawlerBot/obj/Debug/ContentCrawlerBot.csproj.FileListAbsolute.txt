@@ -67,3 +67,9 @@ C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\System.Diagnostic
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Quartz.xml
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Elasticsearch.Net.dll
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Nest.dll
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Elasticsearch.Net.pdb
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Elasticsearch.Net.xml
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Nest.pdb
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Nest.xml

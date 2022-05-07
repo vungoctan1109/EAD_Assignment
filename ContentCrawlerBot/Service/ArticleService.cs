@@ -79,6 +79,7 @@ namespace ContentCrawlerBot.Service
                 {
                     cnn.Open();
                     var command = new SqlCommand(InsertArticleQuery, cnn);
+                    ElasticSearchService.GetInstance().IndexDocument(article);
                     command.Prepare();
                     command.Parameters.AddWithValue("@Url", article.Url);
                     command.Parameters.AddWithValue("@Title", article.Title);

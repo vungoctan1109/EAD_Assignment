@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Net;
+using Nest;
+using EAD_Assignment.Service;
 
 namespace EAD_Assignment.Controllers
 {
@@ -24,11 +26,28 @@ namespace EAD_Assignment.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Article article)
+        public ActionResult Index(string keyword)
         {
             var data = db.Articles.ToList();
             ViewBag.CategoryList = from s in db.Categories select s;
-            return View(data);
+            return Redirect("/Home/Search?keyword=" + keyword);
+        }
+        public ActionResult Search(string keyword, int? page)
+        {
+            ViewBag.Keyword = keyword;
+            ViewBag.CategoryList = from s in db.Categories select s;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            List<Article> list = new List<Article>();
+            var searchRequest = new SearchRequest<Article>()
+            {
+                From = 0,
+                QueryOnQueryString = keyword
+            };
+            var searchResult =
+                ElasticSearchService.GetInstance().Search<Article>(searchRequest);
+            list = searchResult.Documents.ToList();
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult SearchByCategory(int category, int? page)

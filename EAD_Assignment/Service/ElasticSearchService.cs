@@ -1,11 +1,10 @@
-﻿using System;
+﻿using EAD_Assignment.Models;
+using Elasticsearch.Net;
+using Nest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ContentCrawlerBot.Models;
-using EAD_Assignment.Models;
-using Elasticsearch.Net;
-using Nest;
 
 namespace EAD_Assignment.Service
 {
@@ -22,13 +21,13 @@ namespace EAD_Assignment.Service
         {
             if (searchClient == null)
             {
-                var settings = new ConnectionSettings(CloudId, 
+                var settings = new ConnectionSettings(CloudId,
                     new BasicAuthenticationCredentials(
-                        ElasticSearchUser, 
+                        ElasticSearchUser,
                         ElasticSearchPassword))
                         .DefaultIndex(DefaultIndexName)
                         .DefaultMappingFor<Article>(
-                            i=>i.IndexName(IndexName));
+                            i => i.IndexName(IndexName));
                 searchClient = new ElasticClient(settings);
             }
             return searchClient;
