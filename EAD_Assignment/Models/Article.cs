@@ -10,14 +10,15 @@ namespace EAD_Assignment.Models
     {
         [Key]
         public string Url { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } 
         public string ImageUrl { get; set; }
         public string Detail { get; set; }
         public string Description { get; set; }
-        public string Author { get; set; }
+        public string Author { get; set; } 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int CategoryId { get; set; }
         public int Status { get; set; }
+         // cho url title des status vào bảng trang admin
     }
 }

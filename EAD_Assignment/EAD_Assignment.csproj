@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Fizzler, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4ebff4844e382110, processorArchitecture=MSIL">
       <HintPath>..\packages\Fizzler.1.2.0\lib\netstandard2.0\Fizzler.dll</HintPath>
@@ -57,8 +57,11 @@
     <Reference Include="Fizzler.Systems.HtmlAgilityPack, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fizzler.Systems.HtmlAgilityPack.1.2.1\lib\netstandard2.0\Fizzler.Systems.HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.11.42.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.11.42\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.CssSelectors.1.0.2\lib\net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack.CssSelectors, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.CssSelectors.1.0.2\lib\net45\HtmlAgilityPack.CssSelectors.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="RabbitMQ.Client, Version=6.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
@@ -159,7 +162,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SourcesController.cs" />
     <Compile Include="Data\DBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,11 +190,47 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\calendar\fullcalendar.min.css" />
+    <Content Include="Content\css\calendar\fullcalendar.print.min.css" />
+    <Content Include="Content\css\data-table\bootstrap-editable.css" />
+    <Content Include="Content\css\data-table\bootstrap-table.css" />
+    <Content Include="Content\css\editor\bootstrap-editable.css" />
+    <Content Include="Content\css\editor\datetimepicker.css" />
+    <Content Include="Content\css\editor\select2.css" />
+    <Content Include="Content\css\editor\x-editor-style.css" />
+    <Content Include="Content\css\educate-custon-icon.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\meanmenu.min.css" />
+    <Content Include="Content\css\metisMenu\metisMenu-vertical.css" />
+    <Content Include="Content\css\metisMenu\metisMenu.min.css" />
+    <Content Include="Content\css\morrisjs\morris.css" />
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\owl.carousel.css" />
+    <Content Include="Content\css\owl.theme.css" />
+    <Content Include="Content\css\owl.transitions.css" />
+    <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\css\scrollbar\jquery.mCustomScrollbar.min.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\Style_admin.css" />
     <Content Include="Content\img\abstract-background-breaking-news-hd-i-43240733.jpg" />
     <Content Include="Content\img\ads-1.jpg" />
     <Content Include="Content\img\ads-2.jpg" />
+    <Content Include="Content\img\blog-details\1.jpg" />
+    <Content Include="Content\img\contact\1.jpg" />
+    <Content Include="Content\img\contact\2.jpg" />
+    <Content Include="Content\img\contact\3.jpg" />
+    <Content Include="Content\img\contact\4.jpg" />
+    <Content Include="Content\img\courses\1.jpg" />
+    <Content Include="Content\img\courses\2.jpg" />
+    <Content Include="Content\img\courses\3.jpg" />
+    <Content Include="Content\img\cropper\1.jpg" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logo\logo.png" />
+    <Content Include="Content\img\logo\logosn.png" />
     <Content Include="Content\img\news-350x223-1.jpg" />
     <Content Include="Content\img\news-350x223-2.jpg" />
     <Content Include="Content\img\news-350x223-3.jpg" />
@@ -197,7 +239,60 @@
     <Content Include="Content\img\news-450x350-1.jpg" />
     <Content Include="Content\img\news-450x350-2.jpg" />
     <Content Include="Content\img\news-825x525.jpg" />
+    <Content Include="Content\img\notification\1.jpg" />
+    <Content Include="Content\img\notification\2.jpg" />
+    <Content Include="Content\img\notification\3.jpg" />
+    <Content Include="Content\img\notification\4.jpg" />
+    <Content Include="Content\img\notification\5.jpg" />
+    <Content Include="Content\img\notification\6.jpg" />
+    <Content Include="Content\img\product\book-1.jpg" />
+    <Content Include="Content\img\product\book-2.jpg" />
+    <Content Include="Content\img\product\book-3.jpg" />
+    <Content Include="Content\img\product\book-4.jpg" />
+    <Content Include="Content\img\product\pro4.jpg" />
+    <Content Include="Content\img\product\profile-bg.jpg" />
+    <Content Include="Content\img\profile\1.jpg" />
+    <Content Include="Content\img\student\1.jpg" />
+    <Content Include="Content\img\student\2.jpg" />
+    <Content Include="Content\img\student\3.jpg" />
+    <Content Include="Content\img\student\4.jpg" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\chart\jquery.peity.min.js" />
+    <Content Include="Content\js\chart\peity-active.js" />
+    <Content Include="Content\js\data-table\bootstrap-editable.js" />
+    <Content Include="Content\js\data-table\bootstrap-table-editable.js" />
+    <Content Include="Content\js\data-table\bootstrap-table-export.js" />
+    <Content Include="Content\js\data-table\bootstrap-table-resizable.js" />
+    <Content Include="Content\js\data-table\bootstrap-table.js" />
+    <Content Include="Content\js\data-table\colResizable-1.5.source.js" />
+    <Content Include="Content\js\data-table\data-table-active.js" />
+    <Content Include="Content\js\data-table\tableExport.js" />
+    <Content Include="Content\js\editable\bootstrap-datetimepicker.js" />
+    <Content Include="Content\js\editable\bootstrap-editable.js" />
+    <Content Include="Content\js\editable\jquery.mockjax.js" />
+    <Content Include="Content\js\editable\mock-active.js" />
+    <Content Include="Content\js\editable\moment.min.js" />
+    <Content Include="Content\js\editable\select2.js" />
+    <Content Include="Content\js\editable\xediable-active.js" />
+    <Content Include="Content\js\jquery-price-slider.js" />
+    <Content Include="Content\js\jquery.meanmenu.js" />
+    <Content Include="Content\js\jquery.scrollUp.min.js" />
+    <Content Include="Content\js\jquery.sticky.js" />
     <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\metisMenu\metisMenu-active.js" />
+    <Content Include="Content\js\metisMenu\metisMenu.min.js" />
+    <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\js\peity\jquery.peity.min.js" />
+    <Content Include="Content\js\peity\peity-active.js" />
+    <Content Include="Content\js\plugins.js" />
+    <Content Include="Content\js\scrollbar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Content\js\scrollbar\mCustomScrollbar-active.js" />
+    <Content Include="Content\js\tab.js" />
+    <Content Include="Content\js\tawk-chat.js" />
+    <Content Include="Content\js\vendor\jquery-1.12.4.min.js" />
+    <Content Include="Content\js\vendor\modernizr-2.8.3.min.js" />
+    <Content Include="Content\js\vendor\modernizr-custom.js" />
+    <Content Include="Content\js\wow.min.js" />
     <Content Include="Content\lib\easing\easing.js" />
     <Content Include="Content\lib\easing\easing.min.js" />
     <Content Include="Content\lib\slick\ajax-loader.gif" />
@@ -220,6 +315,8 @@
     <Content Include="Content\lib\slick\slick-theme.scss" />
     <Content Include="Content\lib\slick\slick.less" />
     <Content Include="Content\lib\slick\slick.scss" />
+    <Content Include="Content\css\metisMenu\metisMenu.min.css.map" />
+    <Content Include="Content\js\metisMenu\metisMenu.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -246,6 +343,22 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPageClient.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageAdmin.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Sources\Create.cshtml" />
+    <Content Include="Views\Sources\Delete.cshtml" />
+    <Content Include="Views\Sources\Details.cshtml" />
+    <Content Include="Views\Sources\Edit.cshtml" />
+    <Content Include="Views\Sources\Index.cshtml" />
+    <Content Include="Views\Articles\Create.cshtml" />
+    <Content Include="Views\Articles\Delete.cshtml" />
+    <Content Include="Views\Articles\Details.cshtml" />
+    <Content Include="Views\Articles\Edit.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

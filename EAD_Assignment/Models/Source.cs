@@ -20,5 +20,7 @@ namespace EAD_Assignment.Models
         public DateTime UpdatedAt { get; set; }
         public int CategoryId { get; set; }
         public int Status { get; set; }
+
+        // cho Id Name Link Status vào bảng trang admin
     }
 }
