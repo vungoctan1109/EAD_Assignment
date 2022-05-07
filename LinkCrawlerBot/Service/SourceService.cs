@@ -1,16 +1,16 @@
-﻿using LinkCrawlerBot.Models;
+﻿using HtmlAgilityPack;
+using LinkCrawlerBot.Models;
+using LinkCrawlerBot.Queue;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LinkCrawlerBot.Service
 {
     class SourceService
     {
-        private string query = "SELECT * FROM Sources";
+        private ArticleService articleService = new ArticleService();
+        private readonly string SelectAllQuery = "SELECT * FROM Sources";
         public List<Source> GetAll()
         {
             List<Source> sources = new List<Source>();
@@ -19,7 +19,7 @@ namespace LinkCrawlerBot.Service
                 using (var cnn = DbHelper.connect())
                 {
                     cnn.Open();
-                    var command = new SqlCommand(query, cnn);
+                    var command = new SqlCommand(SelectAllQuery, cnn);
                     var data = command.ExecuteReader();
                     while (data.Read())
                     {
@@ -31,10 +31,11 @@ namespace LinkCrawlerBot.Service
                             TitleDetailSelector = data.GetString(4),
                             ContentDetailSelector = data.GetString(5),
                             ImageDetailSelector = data.GetString(6),
-                            CategoryId = data.GetInt32(7),
+                            DescriptionDetailSelector = data.GetString(7),
+                            CategoryId = data.GetInt32(10),
                         };
                         sources.Add(source);
-                        Console.WriteLine(source.ToString());
+                        Console.WriteLine(source.Url);
                     }
                     return sources;
                 }
@@ -46,6 +47,33 @@ namespace LinkCrawlerBot.Service
 
             }
         }
-        //public HashSet<Articles>
+        public HashSet<Event> GetSubLink(Source source)
+        {
+            var web = new HtmlWeb();
+            HtmlDocument doc = web.Load(source.Url);
+            var nodeList = doc.QuerySelectorAll(source.LinkSelector);
+            HashSet<Event> eventQueues = new HashSet<Event>();
+            foreach (var node in nodeList)
+            {
+                if (node.Attributes["href"] != null)
+                {
+                    var link = node.Attributes["href"].Value;
+                    if (string.IsNullOrEmpty(link) || link.Contains("#box_comment_vne"))
+                    {
+                        continue;
+                    }
+                    var existSubUrl = articleService.GetArticleByUrl(link);
+                    if (existSubUrl)
+                    {
+                        continue;
+                    }
+                    Console.WriteLine(link);
+                    Event s = new Event(link, source);
+                    eventQueues.Add(s);
+                }
+
+            }
+            return eventQueues;
+        }
     }
 }

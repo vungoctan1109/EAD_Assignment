@@ -17,11 +17,10 @@ namespace LinkCrawlerBot
 
         public static SqlConnection connect()
         {
-            if (cnn == null)
+            if (cnn == null || cnn.State == System.Data.ConnectionState.Closed)
             {
                 var connectionString = @"Server=" + server + ";Initial Catalog=" + db + ";Persist Security Info=False;User ID=" + id + ";Password=" + password + ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
                 cnn = new SqlConnection(connectionString);
-                Console.WriteLine("Action success.");
             }
             return cnn;
         }
