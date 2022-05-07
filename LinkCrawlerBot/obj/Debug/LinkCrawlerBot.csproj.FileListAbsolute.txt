@@ -61,3 +61,4 @@ C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\obj\Debug\LinkCrawlerBot.cspro
 C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\obj\Debug\LinkCrawlerBot.csproj.CopyComplete
 C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\obj\Debug\LinkCrawlerBot.exe
 C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\obj\Debug\LinkCrawlerBot.pdb
+C:\Users\Admin\source\repos\EAD_Assignment\LinkCrawlerBot\obj\Debug\LinkCrawlerBot.csproj.AssemblyReference.cache
