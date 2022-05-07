@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<EAD_Assignment.Models.Article>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_LayoutPageClient.cshtml";
+}
+
+<head>
+    <link href="@Url.Content("~/Content/css/style1.css")" rel="stylesheet" type="text/css" />
+</head>
+<div class="single-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="sn-container">
+                    <p>Kết quả cho từ khóa "@ViewBag.Keyword"</p>
+                    @foreach (var item in Model)
+                    {
+                        <div class="card">
+                            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="card-img-top" width="240" height="136" style="object-fit:cover" />
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                <p class="card-text">
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </p>
+                                <a href="/Home/Details?url=@Html.DisplayFor(modelItem => item.Url)" class="btn btn-primary">Đọc thêm</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @Html.PagedListPager(Model, page => Url.Action("Search",
+                    new { keyword = ViewBag.Keyword, page }),
+                    new PagedListRenderOptions
+                    {
+                        DisplayLinkToIndividualPages = true,
+                        DisplayPageCountAndCurrentLocation = false,
+                        MaximumPageNumbersToDisplay = 10,
+                        LiElementClasses = new string[] { "page-item" }
+                    })
+            </div>
+
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="sidebar-widget">
+                        <h2 class="sw-title">Danh mục tin tức</h2>
+                        <div class="category">
+                            <ul>
+                                @foreach (var category in ViewBag.CategoryList)
+                                {
+                                    <li><a href="/Home/SearchByCategory?category=@category.Id">@category.Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <div class="image">
+                            <a href="https://htmlcodex.com"><img src="~/Content/img/images.jpg" alt="Image"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

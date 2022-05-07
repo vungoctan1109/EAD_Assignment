@@ -1,4 +1,4 @@
-﻿using ContentCrawlerBot.Service;
+﻿    using ContentCrawlerBot.Service;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
