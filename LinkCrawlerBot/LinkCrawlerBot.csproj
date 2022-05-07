@@ -45,6 +45,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Fizzler, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4ebff4844e382110, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fizzler.1.2.0\lib\netstandard2.0\Fizzler.dll</HintPath>
+    </Reference>
+    <Reference Include="Fizzler.Systems.HtmlAgilityPack, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fizzler.Systems.HtmlAgilityPack.1.2.1\lib\netstandard2.0\Fizzler.Systems.HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.CssSelectors.1.0.2\lib\net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
