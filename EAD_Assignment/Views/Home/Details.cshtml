@@ -1,0 +1,117 @@
+﻿@model EAD_Assignment.Models.Article
+
+@{
+    var title = Model.Title;
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_LayoutPageClient.cshtml";
+}
+
+<div class="breadcrumb-wrap">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
+            <li class="breadcrumb-item">
+
+                @foreach (var category in ViewBag.CategoryList)
+                {
+                    if (category.Id == Model.CategoryId)
+                    {
+                        <a href="/Home/SearchByCategory?category=@category.Id">@category.Name</a>
+                    }
+                }
+            </li>
+            <li class="breadcrumb-item active">@Model.Title</li>
+        </ul>
+    </div>
+</div>
+
+<div class="single-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="sn-container">
+                    <div class="sn-img">
+                        <img src="@Model.ImageUrl" />
+                    </div>
+                    <div class="sn-content">
+                        <h1 class="sn-title">@Model.Title</h1>
+                        <div>
+                            @Html.Raw(Model.Detail)
+                        </div>
+                    </div>
+                </div>
+                <div class="sn-related">
+                    <h2>Tin tức liên quan</h2>
+                    <div class="row sn-slider">
+                        @{int count2 = 0; }
+                        @foreach (var relatedPost in ViewBag.RelatedPost)
+                        {
+                            if (++count2 == 6) { break; }
+                            if (relatedPost.Url != Model.Url)
+                            {
+                                <div class="col-md-4">
+                                    <div class="sn-img">
+                                        <img src="@relatedPost.ImageUrl" width="250" height="150" style="object-fit:cover" />
+                                        <div class="sn-title">
+                                            <a href="/Home/Details?url=@relatedPost.Url">@relatedPost.Title</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else { continue; }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="sidebar-widget">
+                        <h2 class="sw-title">Cùng danh mục</h2>
+                        <div class="news-list">
+                            @{int count = 0; }
+                            @foreach (var relatedPost in ViewBag.RelatedPost)
+                            {
+                                if (++count == 6) { break; }
+                                if (relatedPost.Url != Model.Url)
+                                {
+                                    <div class="nl-item">
+                                        <div class="nl-img">
+                                            <img src="@relatedPost.ImageUrl" />
+                                        </div>
+                                        <div class="nl-title">
+                                            <a href="/Home/Details?url=@relatedPost.Url">@relatedPost.Title</a>
+                                        </div>
+                                    </div>
+                                }
+                                else { continue; }
+                            }
+                        </div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <div class="image">
+                            <a href="https://htmlcodex.com"><img src="~/Content/img/download.jpg" alt="Image"></a>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h2 class="sw-title">Danh mục tin tức</h2>
+                        <div class="category">
+                            <ul>
+                                @foreach (var category in ViewBag.CategoryList)
+                                {
+                                    <li><a href="/Home/SearchByCategory?category=@category.Id">@category.Name</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <div class="image">
+                            <a href="https://htmlcodex.com"><img src="~/Content/img/images.jpg" alt="Image"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

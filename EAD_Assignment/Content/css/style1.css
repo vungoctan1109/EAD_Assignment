@@ -1,0 +1,25 @@
+﻿.card {
+    flex-direction: row;
+    align-items: center;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card img {
+    width: 30%;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: calc(0.25rem - 1px);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+    .pagination a {
+        color: blue;
+        margin: 0px 5px 5px 5px;
+    }
