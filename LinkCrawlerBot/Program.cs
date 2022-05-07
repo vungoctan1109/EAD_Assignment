@@ -11,12 +11,10 @@ namespace LinkCrawlerBot
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            var app = new CrawlApp();
-            app.Execute();
-            Console.WriteLine("Done");
-            Console.ReadLine();
+            CronJobApp app = new CronJobApp();
+            await app.Run();
         }
     }
 }

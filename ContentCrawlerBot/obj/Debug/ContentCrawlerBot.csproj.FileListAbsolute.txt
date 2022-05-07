@@ -61,3 +61,9 @@ C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\HtmlAgilityPack.C
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Newtonsoft.Json.dll
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Newtonsoft.Json.xml
 C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\obj\Debug\ContentCrawlerBot.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Quartz.dll
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\Quartz.xml
+C:\Users\PC\Desktop\EAD_Assignment\ContentCrawlerBot\bin\Debug\System.Diagnostics.DiagnosticSource.xml

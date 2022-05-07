@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ContentCrawlerBot.Service;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
@@ -11,7 +12,12 @@ namespace LinkCrawlerBot.Queue
 {
     class HandleQueue
     {
-        public void Receive(Event eventQueue)
+        private ArticleService articleService;
+        public HandleQueue()
+        {
+            articleService = new ArticleService();
+        }
+        public void Receive()
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
@@ -22,27 +28,29 @@ namespace LinkCrawlerBot.Queue
                                      exclusive: false,
                                      autoDelete: false,
                                      arguments: null);
-
+                channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
+                Console.WriteLine("Waiting for message.");
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += (model, ea) =>
                 {
                     var body = ea.Body.ToArray();
-                    var i = 0;
-                    var message = Encoding.UTF8.GetString(body);
-                    Event eventQ = JsonConvert.DeserializeObject<Event>(message);
-                    //var article = articleService.GetArticle(eventQueue);
-                    //if (article != null)
-                    //{
-                    //    articleService.Save(article);
-                    //    Console.WriteLine(" [x] Received{0}:  {1}", i++, article.Title);
-                    //}
-
-
+                    var stuff = Encoding.UTF8.GetString(body);
+                    Event eventReceive = JsonConvert.DeserializeObject<Event>(stuff);
+                    var article = articleService.GetArticleFromQueue(eventReceive);
+                    if (article != null)
+                    {
+                        articleService.Save(article);
+                        Console.WriteLine("[x]Article received:  {0}", article.Url);
+                    }
                 };
                 channel.BasicConsume(queue: "crawler",
                                      autoAck: true,
                                      consumer: consumer);
-            }     
+
+                Console.WriteLine(" Press [enter] to exit.");
+                Console.ReadLine();
+            }
         }
     }
 }
+

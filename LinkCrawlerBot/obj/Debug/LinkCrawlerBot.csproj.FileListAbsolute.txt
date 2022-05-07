@@ -60,3 +60,10 @@ C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\HtmlAgilityPack.CssS
 C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Newtonsoft.Json.dll
 C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\HtmlAgilityPack.CssSelectors.pdb
 C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\obj\Debug\LinkCrawlerBot.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Quartz.dll
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Quartz.xml
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\System.Diagnostics.DiagnosticSource.xml

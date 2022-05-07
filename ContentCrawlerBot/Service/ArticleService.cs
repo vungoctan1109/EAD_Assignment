@@ -34,7 +34,7 @@ namespace ContentCrawlerBot.Service
                     var data = command.ExecuteReader();
                     while (data.Read())
                     {
-                        articles.Add(CreateArticle(data));
+                        articles.Add(GenerateArticleFromData(data));
                     }
                     return articles;
                 }
@@ -46,7 +46,7 @@ namespace ContentCrawlerBot.Service
 
             }
         }
-        public Article GetArticleByUrl(string url)
+        public bool FindArticleByUrl(string url)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace ContentCrawlerBot.Service
                     command.Prepare();
                     command.Parameters.AddWithValue("@Url", url);
                     var data = command.ExecuteReader();
-                    return data.Read() ? CreateArticle(data) : null;
+                    return (data.Read());
                 }
             }
             catch (Exception e)
@@ -69,6 +69,10 @@ namespace ContentCrawlerBot.Service
 
         public Article Save(Article article)
         {
+            if (FindArticleByUrl(article.Url))
+            {
+                return null;
+            }
             try
             {
                 using (var cnn = DbHelper.connect())
@@ -97,7 +101,7 @@ namespace ContentCrawlerBot.Service
 
         }
 
-        private Article CreateArticle(SqlDataReader data)
+        private Article GenerateArticleFromData(SqlDataReader data)
         {
             return new Article()
             {
@@ -115,16 +119,15 @@ namespace ContentCrawlerBot.Service
         {
             try
             {
-                Console.OutputEncoding = System.Text.Encoding.UTF8;
                 HtmlDocument doc = web.Load(eventQueue.Url);
                 string title = doc.QuerySelector(eventQueue.TitleDetailSelector)?.InnerText;
                 string description = doc.QuerySelector(eventQueue.DescriptionDetailSelector)?.InnerText;
                 var image = doc.QuerySelector(eventQueue.ImageDetailSelector)?.GetAttributeValue("data-src", string.Empty);
                 var contentNode = doc.QuerySelectorAll(eventQueue.ContentDetailSelector);
-                StringBuilder contentSB = new StringBuilder();
+                StringBuilder contentArticle = new StringBuilder();
                 foreach (var content in contentNode)
                 {
-                    contentSB.Append(content.InnerHtml);
+                    contentArticle.Append(content.InnerHtml);
                 }
 
                 Article article = new Article()
@@ -133,7 +136,7 @@ namespace ContentCrawlerBot.Service
                     Title = title,
                     ImageUrl = image,
                     Description = description,
-                    Detail = contentSB.ToString(),
+                    Detail = contentArticle.ToString(),
                     CategoryId = eventQueue.CategoryId
                 };
                 if (article == null || article.Title == null || article.ImageUrl == null || article.Detail == null || article.Description == null)

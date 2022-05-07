@@ -1,6 +1,7 @@
 ﻿using LinkCrawlerBot.Models;
 using LinkCrawlerBot.Queue;
 using LinkCrawlerBot.Service;
+using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LinkCrawlerBot.App
 {
-    class CrawlApp
+    class CrawlApp :IJob
     {
         private SourceService sourceService;
         private HandleQueue myQueue;
@@ -20,7 +21,8 @@ namespace LinkCrawlerBot.App
             myQueue = new HandleQueue();
             listSource = new List<Source>();
         }
-        public void Execute()
+
+        public async Task Execute(IJobExecutionContext context)
         {
             listSource = sourceService.GetAll();
             foreach (var source in listSource)
@@ -33,6 +35,5 @@ namespace LinkCrawlerBot.App
                 }
             }
         }
-
     }
 }
