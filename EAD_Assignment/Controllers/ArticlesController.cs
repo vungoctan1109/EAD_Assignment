@@ -9,7 +9,10 @@ using System.Web;
 using System.Web.Mvc;
 using EAD_Assignment.Data;
 using EAD_Assignment.Models;
+using EAD_Assignment.Service;
 using HtmlAgilityPack;
+using Nest;
+using PagedList;
 
 namespace EAD_Assignment.Controllers
 {
@@ -18,9 +21,47 @@ namespace EAD_Assignment.Controllers
         private DBContext db = new DBContext();
 
         // GET: Articles
-        public ActionResult Index()
+        public ActionResult Index(string sort, string keyword, string currentKeyword, int? categoryId, int? page)
         {
-            return View(db.Articles.ToList());
+            int pageNumber = (page ?? 1);
+            keyword = keyword ?? currentKeyword;
+            int pageSize = 10;
+            ViewBag.ListCategory = db.Categories.ToList();
+            ViewBag.Sort = sort;
+            ViewBag.CurrentKeyword = keyword;
+            //ElasticSearch h
+            List<Article> list = new List<Article>();
+            var searchRequest = new SearchRequest<Article>()
+            {
+                From = pageSize * (pageNumber - 1),
+                QueryOnQueryString = keyword
+            };
+            if (categoryId != null)
+            {
+                searchRequest.Query = new TermQuery
+                {
+                    Field = "categoryId",
+                    Value = categoryId
+                };                         
+            }
+            if (sort == "createdAt_asc")
+            {
+                searchRequest.Sort = new List<ISort>
+                {
+                    new FieldSort { Field = "createdAt", Order = SortOrder.Ascending }
+                };
+            }
+            searchRequest.Sort = new List<ISort>
+            {
+                new FieldSort { Field = "createdAt", Order = SortOrder.Descending }
+            };
+
+            var searchResult =
+                ElasticSearchService.GetInstance().Search<Article>(searchRequest);
+            list = searchResult.Documents.ToList();
+            
+            ViewBag.CategoryId = categoryId;
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Articles/Details/5
