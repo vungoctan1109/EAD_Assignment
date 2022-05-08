@@ -38,6 +38,7 @@ namespace EAD_Assignment.Controllers
             ViewBag.CategoryList = from s in db.Categories select s;
             int pageSize = 5;
             int pageNumber = (page ?? 1);
+            //ElasticSearch h
             List<Article> list = new List<Article>();
             var searchRequest = new SearchRequest<Article>()
             {
