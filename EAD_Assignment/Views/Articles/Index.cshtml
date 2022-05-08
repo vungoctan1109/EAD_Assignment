@@ -46,16 +46,15 @@
                                         @foreach (var article in Model)
                                         {
                                             <tr>
-                                                <td>
-                                                </td>
+                                                <td></td>
                                                 <td>@article.Url</td>
                                                 <td>@article.Title</td>
                                                 <td>@article.Description</td>
                                                 <td>@article.Status</td>
                                                 <td width="100">
-                                                    <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                                    <button><i class="fa-solid fa-eye"></i></button>
-                                                    <button><i class="fa-regular fa-trash-can"></i></button>
+                                                    <a title="Details" href="/Articles/Details?Url=@article.Url"><i class="fa-solid fa-eye"></i></a>
+                                                    <a title="Edit" href="/Articles/Edit?Url=@article.Url"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a title="Delete" href="/Articles/Delete?Url=@article.Url"><i class="fa-regular fa-trash-can"></i></a>
                                                 </td>
                                             </tr>
                                         }

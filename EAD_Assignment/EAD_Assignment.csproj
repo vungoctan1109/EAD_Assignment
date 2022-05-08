@@ -348,9 +348,9 @@
     <Compile Include="Migrations\202205041413033_InitDatabase.Designer.cs">
       <DependentUpon>202205041413033_InitDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202205041129281_add_relationship.cs" />
-    <Compile Include="Migrations\202205041129281_add_relationship.designer.cs">
-      <DependentUpon>202205041129281_add_relationship.cs</DependentUpon>
+    <Compile Include="Migrations\202205080828558_init_again.cs" />
+    <Compile Include="Migrations\202205080828558_init_again.Designer.cs">
+      <DependentUpon>202205080828558_init_again.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
@@ -540,6 +540,7 @@
     <Content Include="Content\js\knob\jquery.knob.js" />
     <Content Include="Content\js\knob\knob-active.js" />
     <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\main1.js" />
     <Content Include="Content\js\masking-active.js" />
     <Content Include="Content\js\metisMenu\metisMenu-active.js" />
     <Content Include="Content\js\metisMenu\metisMenu.min.js" />
@@ -677,8 +678,8 @@
     <EmbeddedResource Include="Migrations\202205041413033_InitDatabase.resx">
       <DependentUpon>202205041413033_InitDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202205041129281_add_relationship.resx">
-      <DependentUpon>202205041129281_add_relationship.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202205080828558_init_again.resx">
+      <DependentUpon>202205080828558_init_again.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

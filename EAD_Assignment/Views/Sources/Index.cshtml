@@ -54,9 +54,9 @@
                                                     @source.Status
                                                 </td>
                                                 <td>
-                                                    <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                                    <button><i class="fa-solid fa-eye"></i></button>
-                                                    <button><i class="fa-regular fa-trash-can"></i></button>
+                                                    <a title="Details" href="/Sources/Details?id=@source.Id"><i class="fa-solid fa-eye"></i></a>
+                                                    <a title="Edit" href="/Sources/Edit?id=@source.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a title="Delete" href="/Sources/Delete?id=@source.Id"><i class="fa-regular fa-trash-can"></i></a>
                                                 </td>
                                             </tr>
                                         }

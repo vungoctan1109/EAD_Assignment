@@ -42,7 +42,7 @@
                                         <tr>
                                             <th data-field="state" data-checkbox="true"></th>
                                             <th data-field="id">ID</th>
-                                            <th data-field="name" data-editable="true">Name</th>
+                                            <th data-field="name">Name</th>
                                             <th data-field="action">Action</th>
                                         </tr>
                                     </thead>
@@ -54,9 +54,9 @@
                                                 <td>@category.Id</td>
                                                 <td>@category.Name</td>
                                                 <td>
-                                                    <button><i class="fa-solid fa-pen-to-square"></i></button>
-                                                    <button><i class="fa-solid fa-eye"></i></button>
-                                                    <button><i class="fa-regular fa-trash-can"></i></button>
+                                                    <a title="Details" href="/Categories/Details?id=@category.Id"><i class="fa-solid fa-eye"></i></a>
+                                                    <a title="Edit" href="/Categories/Edit?id=@category.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a title="Delete" href="/Categories/Delete?id=@category.Id"><i class="fa-regular fa-trash-can"></i></a>
                                                 </td>
                                             </tr>
                                         }

@@ -51,11 +51,11 @@ namespace EAD_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Link,LinkSelector,TitleDetailSelector,ContentDetailSelector,ImageDetailSelector,DescriptionDetailSelector")] Source source)
+        public ActionResult Create([Bind(Include = "Id,Name,Link,LinkSelector,TitleDetailSelector,ContentDetailSelector,ImageDetailSelector,DescriptionDetailSelector, CategoryId")] Source source)
         {
+            ViewBag.CategoryList = from s in db.Categories select s;
             if (ModelState.IsValid)
             {
-                source.CategoryId = 10;
                 source.Status = 1;
                 source.CreatedAt = DateTime.Now;
                 source.UpdatedAt = DateTime.Now;
