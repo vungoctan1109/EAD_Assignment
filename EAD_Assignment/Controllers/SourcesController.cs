@@ -135,46 +135,54 @@ namespace EAD_Assignment.Controllers
 
         public JsonResult PreviewSource(string url, string linkSelector)
         {
-            var web = new HtmlWeb();
-            HtmlDocument doc = web.Load(url);
-            var nodeList = doc.QuerySelectorAll(linkSelector);
-            HashSet<string> setLink = new HashSet<string>();
-            foreach (var node in nodeList)
+            if (!String.IsNullOrEmpty(url) && !String.IsNullOrEmpty(linkSelector))
             {
-                var link = node.Attributes["href"].Value;
-                if (string.IsNullOrEmpty(link))
+                var web = new HtmlWeb();
+                HtmlDocument doc = web.Load(url);
+                var nodeList = doc.QuerySelectorAll(linkSelector);
+                HashSet<string> setLink = new HashSet<string>();
+                foreach (var node in nodeList)
                 {
-                    continue;
+                    var link = node.Attributes["href"].Value;
+                    if (string.IsNullOrEmpty(link))
+                    {
+                        continue;
+                    }
+                    setLink.Add(link);
                 }
-                setLink.Add(link);
+                previewLink = setLink.First();
+                return Json(setLink);
             }
-            previewLink = setLink.First();
-            return Json(setLink);
+            return Json("");
         }
 
         public JsonResult PreviewArticle(string titleSelector, string imgSelector, string descriptionSelector, string detailSelector)
         {
-            var web = new HtmlWeb();
-            HtmlDocument doc = web.Load(previewLink);
-            string title = doc.QuerySelector(titleSelector)?.InnerText;
-            string description = doc.QuerySelector(descriptionSelector)?.InnerText;
-            var image = doc.QuerySelector(imgSelector)?.GetAttributeValue("data-src", string.Empty);
-            var contentNode = doc.QuerySelectorAll(detailSelector);
-            StringBuilder contentArticle = new StringBuilder();
-            foreach (var content in contentNode)
+            if (!String.IsNullOrEmpty(previewLink))
             {
-                contentArticle.Append(content.InnerHtml);
-            }
+                var web = new HtmlWeb();
+                HtmlDocument doc = web.Load(previewLink);
+                string title = doc.QuerySelector(titleSelector)?.InnerText;
+                string description = doc.QuerySelector(descriptionSelector)?.InnerText;
+                var image = doc.QuerySelector(imgSelector)?.GetAttributeValue("data-src", string.Empty);
+                var contentNode = doc.QuerySelectorAll(detailSelector);
+                StringBuilder contentArticle = new StringBuilder();
+                foreach (var content in contentNode)
+                {
+                    contentArticle.Append(content.InnerHtml);
+                }
 
-            Article article = new Article()
-            {
-                Url = previewLink,
-                Title = title,
-                ImageUrl = image,
-                Description = description,
-                Detail = contentArticle.ToString()
-            };
-            return Json(article);
+                Article article = new Article()
+                {
+                    Url = previewLink,
+                    Title = title,
+                    ImageUrl = image,
+                    Description = description,
+                    Detail = contentArticle.ToString()
+                };
+                return Json(article);
+            }
+            return Json("");
         }
     }
 }

@@ -11,6 +11,7 @@
         },
         success: function (data) {
             data.forEach(element => $(".result-link").append("<li>" + element + "</li>"));
+            console.log(data);
         }
     });
 });
