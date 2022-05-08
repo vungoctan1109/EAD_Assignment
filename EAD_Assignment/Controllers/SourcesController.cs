@@ -42,6 +42,7 @@ namespace EAD_Assignment.Controllers
         // GET: Sources/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryList = from s in db.Categories select s;
             return View();
         }
 
@@ -50,10 +51,14 @@ namespace EAD_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Link,LinkSelector,TitleDetailSelector,ContentDetailSelector,ImageDetailSelector,DescriptionDetailSelector,CreatedAt,UpdatedAt,CategoryId,Status")] Source source)
+        public ActionResult Create([Bind(Include = "Id,Name,Link,LinkSelector,TitleDetailSelector,ContentDetailSelector,ImageDetailSelector,DescriptionDetailSelector")] Source source)
         {
             if (ModelState.IsValid)
             {
+                source.CategoryId = 10;
+                source.Status = 1;
+                source.CreatedAt = DateTime.Now;
+                source.UpdatedAt = DateTime.Now;
                 db.Sources.Add(source);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -128,7 +133,7 @@ namespace EAD_Assignment.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult PreviewSource(string url, string linkSelector)
+        public JsonResult PreviewSource(string url, string linkSelector)
         {
             var web = new HtmlWeb();
             HtmlDocument doc = web.Load(url);
@@ -144,10 +149,10 @@ namespace EAD_Assignment.Controllers
                 setLink.Add(link);
             }
             previewLink = setLink.First();
-            return View(setLink);
+            return Json(setLink);
         }
 
-        public ActionResult PreviewArticle(string titleSelector, string imgSelector, string descriptionSelector, string detailSelector)
+        public JsonResult PreviewArticle(string titleSelector, string imgSelector, string descriptionSelector, string detailSelector)
         {
             var web = new HtmlWeb();
             HtmlDocument doc = web.Load(previewLink);
@@ -169,7 +174,7 @@ namespace EAD_Assignment.Controllers
                 Description = description,
                 Detail = contentArticle.ToString()
             };
-            return View(article);
+            return Json(article);
         }
     }
 }
