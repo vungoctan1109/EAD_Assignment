@@ -10,6 +10,7 @@ using PagedList;
 using System.Net;
 using Nest;
 using EAD_Assignment.Service;
+using System.Diagnostics;
 
 namespace EAD_Assignment.Controllers
 {
@@ -40,14 +41,39 @@ namespace EAD_Assignment.Controllers
             int pageNumber = (page ?? 1);
             //ElasticSearch h
             List<Article> list = new List<Article>();
-            var searchRequest = new SearchRequest<Article>()
+            var searchRequest = new SearchRequest<Article>();
+            searchRequest.From = 0;
+            //Must
+            //{
+            //  Category,
+            //  Should
+            //        {
+            //          Url=keyword,
+            //          Detail=keyword
+            //        }
+            //}
+            var listQuery = new List<QueryContainer>();
+            if (!string.IsNullOrEmpty(keyword))
             {
-                From = 0,
-                QueryOnQueryString = keyword
-            };
+                var query = new BoolQuery
+                {
+                    Should = new List<QueryContainer>
+                        {
+                             new MatchQuery{ Field = "url", Query = keyword},
+                             new MatchQuery{ Field = "detail", Query = keyword}
+                        }
+                };
+                listQuery.Add(query);
+            }
+            listQuery.Add(new TermQuery { Field = "categoryId", Value = 1 });
+            searchRequest.Query = new QueryContainer(new BoolQuery
+            {
+                Must = listQuery
+            });
             var searchResult =
                 ElasticSearchService.GetInstance().Search<Article>(searchRequest);
             list = searchResult.Documents.ToList();
+            Debug.WriteLine("Elastic search: " + searchResult.Total + " Result" + list.Count());
             return View(list.ToPagedList(pageNumber, pageSize));
         }
 

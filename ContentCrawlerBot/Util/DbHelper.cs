@@ -24,14 +24,5 @@ namespace ContentCrawlerBot
             }
             return cnn;
         }
-
-        internal static string checkExistUrl(string url, SqlConnection cnn)
-        {
-            SqlCommand command = new SqlCommand("SELECT Url FROM Articles WHERE Url = @url", cnn);
-            command.Prepare();
-            command.Parameters.AddWithValue("@url", url);
-            string existUrl = (string)command.ExecuteScalar();
-            return existUrl;
-        }
     }
 }

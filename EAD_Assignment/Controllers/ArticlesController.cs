@@ -21,41 +21,60 @@ namespace EAD_Assignment.Controllers
         private DBContext db = new DBContext();
 
         // GET: Articles
-        public ActionResult Index(string sort, string keyword, string currentKeyword, int? categoryId, int? page)
+        public ActionResult Index(string sortType, string keyword, int? categoryId, int? page)
         {
-            int pageNumber = (page ?? 1);
-            keyword = keyword ?? currentKeyword;
-            int pageSize = 10;
             ViewBag.ListCategory = db.Categories.ToList();
-            ViewBag.Sort = sort;
-            ViewBag.CurrentKeyword = keyword;
+            ViewBag.CategoryID = categoryId;
+            ViewBag.Sort = sortType;
+            ViewBag.Keyword = keyword;
+            int pageNumber = (page ?? 1);
+            int pageSize = 10;
             //ElasticSearch h
             List<Article> list = new List<Article>();
-            var searchRequest = new SearchRequest<Article>()
+            var searchRequest = new SearchRequest<Article>();
+            searchRequest.From = 0;
+            var listQuery = new List<QueryContainer>();
+            if (!string.IsNullOrEmpty(keyword))
             {
-                From = pageSize * (pageNumber - 1),
-                QueryOnQueryString = keyword
-            };
+                var query = new BoolQuery
+                {
+                    Should = new List<QueryContainer>
+                        {
+                             new MatchQuery{ Field = "url", Query = keyword},
+                             new MatchQuery{ Field = "detail", Query = keyword}
+                        }
+                };
+                listQuery.Add(query);
+            }
             if (categoryId != null)
             {
-                searchRequest.Query = new TermQuery
-                {
-                    Field = "categoryId",
-                    Value = categoryId
-                };                         
+                listQuery.Add(new TermQuery { Field = "categoryId", Value = categoryId });
             }
-            if (sort == "createdAt_asc")
+            searchRequest.Query = new QueryContainer(new BoolQuery
+            {
+                Must = listQuery
+            });
+            
+            if (("createdAt_asc").Equals(sortType))
             {
                 searchRequest.Sort = new List<ISort>
                 {
                     new FieldSort { Field = "createdAt", Order = SortOrder.Ascending }
                 };
             }
-            searchRequest.Sort = new List<ISort>
+            else
             {
-                new FieldSort { Field = "createdAt", Order = SortOrder.Descending }
-            };
-
+                //ES  Sort by field typed non-string a.k.a non-analyzed text field
+                searchRequest.Sort = new List<ISort>
+                {
+                    new FieldSort { Field = "createdAt", Order = SortOrder.Descending }
+                };
+            }
+            //ES Sort by field typed string a.k.a analyzed text field -> them .keyword
+            //searchRequest.Sort = new List<ISort>
+            //{
+            //    new FieldSort { Field = "url.keyword", Order = SortOrder.Descending }
+            //};
             var searchResult =
                 ElasticSearchService.GetInstance().Search<Article>(searchRequest);
             list = searchResult.Documents.ToList();
