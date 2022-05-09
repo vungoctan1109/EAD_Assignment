@@ -65,7 +65,6 @@ namespace EAD_Assignment.Controllers
                 };
                 listQuery.Add(query);
             }
-            listQuery.Add(new TermQuery { Field = "categoryId", Value = 1 });
             searchRequest.Query = new QueryContainer(new BoolQuery
             {
                 Must = listQuery

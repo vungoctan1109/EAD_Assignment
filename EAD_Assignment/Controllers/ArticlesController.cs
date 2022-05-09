@@ -25,7 +25,7 @@ namespace EAD_Assignment.Controllers
         {
             ViewBag.ListCategory = db.Categories.ToList();
             ViewBag.CategoryID = categoryId;
-            ViewBag.Sort = sortType;
+            ViewBag.SortType = sortType;
             ViewBag.Keyword = keyword;
             int pageNumber = (page ?? 1);
             int pageSize = 10;

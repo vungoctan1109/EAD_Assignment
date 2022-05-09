@@ -13,32 +13,38 @@
 </p>
 @using (Html.BeginForm("Index", "Articles", FormMethod.Get))
 {
-    <p>
-        Find by keyword: @Html.TextBox("keyword", ViewBag.Keyword as string)
-        <input type="submit" value="Search" />
-    </p>
-    <div style="margin-bottom:10px">
-        <select name="categoryId" id="categoryId">
-            <option value="">Select Category</option>
-            @foreach (var category in ViewBag.ListCategory)
-            {
-                if (category.Id == ViewBag.CategoryId)
-                {
-                    <option value=@category.Id selected>@category.Name</option>
-                }
-                else
-                {
-                    <option value=@category.Id>@category.Name</option>
-                }
-            }
-        </select>
-    </div>
-    <div style="margin-bottom:10px">
-        <select name="sortType" id="sortType">
-            <option value="">Sort by</option>
-            <option value="createdAt_asc">Ascending</option>
-            <option value="createdAt_desc">Descending</option>
-        </select>
+    <div class="container-fluid">
+        <div class="row">
+            <p class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                Find by keyword: @Html.TextBox("keyword", ViewBag.Keyword as string)
+            </p>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <select name="categoryId" id="categoryId">
+                    <option value="">Select Category</option>
+                    @foreach (var category in ViewBag.ListCategory)
+                    {
+                        if (category.Id == ViewBag.CategoryId)
+                        {
+                            <option value=@category.Id selected>@category.Name</option>
+                        }
+                        else
+                        {
+                            <option value=@category.Id>@category.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <select name="sortType" id="sortType">
+                    <option value="">Sort by (Lastest default)</option>
+                    <option value="createdAt_asc" @(ViewBag.SortType == "createdAt_asc" ? "selected" : "")>Latest</option>
+                    <option value="createdAt_desc" @(ViewBag.SortType == "createdAt_desc" ? "selected" : "")>Descending</option>
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <input type="submit" value="Filter" />
+            </div>
+        </div>
     </div>
 }
 <table class="table">
