@@ -87,8 +87,8 @@ namespace ContentCrawlerBot.Service
                     command.Parameters.AddWithValue("@Detail", article.Detail);
                     command.Parameters.AddWithValue("@Description", article.Description);
                     command.Parameters.AddWithValue("@CategoryId", article.CategoryId);
-                    command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
-                    command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
+                    command.Parameters.AddWithValue("@CreatedAt", article.CreatedAt);
+                    command.Parameters.AddWithValue("@UpdatedAt", article.UpdatedAt);
                     command.Parameters.AddWithValue("@Status", 0);
                     command.ExecuteNonQuery();
                     return article;
@@ -138,7 +138,9 @@ namespace ContentCrawlerBot.Service
                     ImageUrl = image,
                     Description = description,
                     Detail = contentArticle.ToString(),
-                    CategoryId = eventQueue.CategoryId
+                    CategoryId = eventQueue.CategoryId,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
                 };
                 if (article == null || article.Title == null || article.ImageUrl == null || article.Detail == null || article.Description == null)
                 {
