@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/t2012e-sem3/databases/t2012e-sem3",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:DBContext",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
