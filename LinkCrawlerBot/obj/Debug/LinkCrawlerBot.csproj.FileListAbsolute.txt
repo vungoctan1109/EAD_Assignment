@@ -120,3 +120,6 @@ C:\Users\Admin\Desktop\EAD\EAD_Assignment\LinkCrawlerBot\obj\Debug\LinkCrawlerBo
 C:\Users\Admin\Desktop\EAD\EAD_Assignment\LinkCrawlerBot\bin\Debug\Fizzler.dll
 C:\Users\Admin\Desktop\EAD\EAD_Assignment\LinkCrawlerBot\bin\Debug\Fizzler.Systems.HtmlAgilityPack.dll
 C:\Users\Admin\Desktop\EAD\EAD_Assignment\LinkCrawlerBot\bin\Debug\Fizzler.Systems.HtmlAgilityPack.pdb
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Fizzler.dll
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Fizzler.Systems.HtmlAgilityPack.dll
+C:\Users\PC\Desktop\EAD_Assignment\LinkCrawlerBot\bin\Debug\Fizzler.Systems.HtmlAgilityPack.pdb
