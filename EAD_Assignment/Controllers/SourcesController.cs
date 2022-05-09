@@ -68,6 +68,7 @@ namespace EAD_Assignment.Controllers
         }
 
         // GET: Sources/Edit/5
+        [ValidateInput(false)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,6 +88,7 @@ namespace EAD_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,Name,Link,LinkSelector,TitleDetailSelector,ContentDetailSelector,ImageDetailSelector,DescriptionDetailSelector,CreatedAt,UpdatedAt,CategoryId,Status")] Source source)
         {
             if (ModelState.IsValid)

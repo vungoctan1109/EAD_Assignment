@@ -16,10 +16,10 @@
     <div class="container-fluid">
         <div class="row">
             <p class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                Find by keyword: @Html.TextBox("keyword", ViewBag.Keyword as string)
+                @Html.TextBox("keyword", ViewBag.Keyword as string, new { @class = "form-control", placeholder = "Find by keyword" })
             </p>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <select name="categoryId" id="categoryId">
+                <select name="categoryId" id="categoryId" class="form-control">
                     <option value="">Select Category</option>
                     @foreach (var category in ViewBag.ListCategory)
                     {
@@ -35,14 +35,14 @@
                 </select>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <select name="sortType" id="sortType">
+                <select name="sortType" id="sortType" class="form-control">
                     <option value="">Sort by (Lastest default)</option>
                     <option value="createdAt_asc" @(ViewBag.SortType == "createdAt_asc" ? "selected" : "")>Latest</option>
                     <option value="createdAt_desc" @(ViewBag.SortType == "createdAt_desc" ? "selected" : "")>Descending</option>
                 </select>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <input type="submit" value="Filter" />
+                <input type="submit" value="Filter" class="btn btn-primary" />
             </div>
         </div>
     </div>

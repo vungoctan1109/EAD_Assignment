@@ -33,6 +33,7 @@ namespace EAD_Assignment.Controllers
             ViewBag.CategoryList = from s in db.Categories select s;
             return Redirect("/Home/Search?keyword=" + keyword);
         }
+
         public ActionResult Search(string keyword, int? page)
         {
             ViewBag.Keyword = keyword;
@@ -43,6 +44,7 @@ namespace EAD_Assignment.Controllers
             List<Article> list = new List<Article>();
             var searchRequest = new SearchRequest<Article>();
             searchRequest.From = 0;
+            searchRequest.Size = 10000;
             //Must
             //{
             //  Category,

@@ -60,6 +60,7 @@ namespace EAD_Assignment.Controllers
         }
 
         // GET: Categories/Edit/5
+        [ValidateInput(false)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +80,7 @@ namespace EAD_Assignment.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,Name")] Category category)
         {
             if (ModelState.IsValid)
