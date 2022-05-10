@@ -61,8 +61,8 @@ namespace EAD_Assignment.Controllers
                 {
                     Should = new List<QueryContainer>
                         {
-                             new MatchQuery{ Field = "url", Query = keyword},
-                             new MatchQuery{ Field = "detail", Query = keyword}
+                             new MatchQuery{ Field = "title", Query = keyword},
+                             new MatchQuery{ Field = "description", Query = keyword}
                         }
                 };
                 listQuery.Add(query);
@@ -71,6 +71,10 @@ namespace EAD_Assignment.Controllers
             {
                 Must = listQuery
             });
+            searchRequest.Sort = new List<ISort>
+                {
+                    new FieldSort { Field = "createdAt", Order = SortOrder.Ascending }
+                };
             var searchResult =
                 ElasticSearchService.GetInstance().Search<Article>(searchRequest);
             list = searchResult.Documents.ToList();
