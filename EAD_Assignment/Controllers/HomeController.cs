@@ -27,16 +27,17 @@ namespace EAD_Assignment.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string keyword)
+        public ActionResult Index(string keyword, int? categoryId)
         {
             var data = db.Articles.ToList();
             ViewBag.CategoryList = from s in db.Categories select s;
-            return Redirect("/Home/Search?keyword=" + keyword);
+            return Redirect("/Home/Search?keyword=" + keyword + "&categoryId=" + categoryId);
         }
 
-        public ActionResult Search(string keyword, int? page)
+        public ActionResult Search(string keyword, int? categoryId, int? page)
         {
             ViewBag.Keyword = keyword;
+            ViewBag.CategoryId = categoryId;
             ViewBag.CategoryList = from s in db.Categories select s;
             int pageSize = 5;
             int pageNumber = (page ?? 1);
@@ -67,6 +68,10 @@ namespace EAD_Assignment.Controllers
                 };
                 listQuery.Add(query);
             }
+            if (categoryId != null)
+            {
+                listQuery.Add(new TermQuery { Field = "categoryId", Value = categoryId });
+            }
             searchRequest.Query = new QueryContainer(new BoolQuery
             {
                 Must = listQuery
@@ -78,7 +83,6 @@ namespace EAD_Assignment.Controllers
             var searchResult =
                 ElasticSearchService.GetInstance().Search<Article>(searchRequest);
             list = searchResult.Documents.ToList();
-            Debug.WriteLine("Elastic search: " + searchResult.Total + " Result" + list.Count());
             return View(list.ToPagedList(pageNumber, pageSize));
         }
 
