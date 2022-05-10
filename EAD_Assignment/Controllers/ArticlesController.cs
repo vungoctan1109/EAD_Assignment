@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -41,8 +42,8 @@ namespace EAD_Assignment.Controllers
                 {
                     Should = new List<QueryContainer>
                         {
-                             new MatchQuery{ Field = "url", Query = keyword},
-                             new MatchQuery{ Field = "detail", Query = keyword}
+                             new MatchQuery{ Field = "title", Query = keyword},
+                             new MatchQuery{ Field = "description", Query = keyword}
                         }
                 };
                 listQuery.Add(query);
@@ -56,11 +57,11 @@ namespace EAD_Assignment.Controllers
                 Must = listQuery
             });
 
-            if (("createdAt_asc").Equals(sortType))
+            if (("createdAt_desc").Equals(sortType))
             {
                 searchRequest.Sort = new List<ISort>
                 {
-                    new FieldSort { Field = "createdAt", Order = SortOrder.Ascending }
+                    new FieldSort { Field = "createdAt", Order = SortOrder.Descending }
                 };
             }
             else
@@ -68,7 +69,7 @@ namespace EAD_Assignment.Controllers
                 //ES  Sort by field typed non-string a.k.a non-analyzed text field
                 searchRequest.Sort = new List<ISort>
                 {
-                    new FieldSort { Field = "createdAt", Order = SortOrder.Descending }
+                    new FieldSort { Field = "createdAt", Order = SortOrder.Ascending }
                 };
             }
             //ES Sort by field typed string a.k.a analyzed text field -> them .keyword
@@ -130,6 +131,7 @@ namespace EAD_Assignment.Controllers
             {
                 db.Articles.Add(article);
                 db.SaveChanges();
+                ElasticSearchService.GetInstance().IndexDocument(article);
                 return RedirectToAction("Index");
             }
 
@@ -164,6 +166,11 @@ namespace EAD_Assignment.Controllers
             {
                 db.Entry(article).State = EntityState.Modified;
                 db.SaveChanges();
+                //Update lai trong ES
+                ElasticSearchService.GetInstance()
+                    .Update(DocumentPath<Article>.Id(article.Url),
+                            u => u.Doc(article)
+                    ) ;
                 return RedirectToAction("Index");
             }
             return View(article);
@@ -192,6 +199,7 @@ namespace EAD_Assignment.Controllers
             Article article = db.Articles.Find(id);
             db.Articles.Remove(article);
             db.SaveChanges();
+            ElasticSearchService.GetInstance().Delete<Article>(article.Url);
             return RedirectToAction("Index");
         }
 
