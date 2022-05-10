@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @id = "myForm", @name = "myForm" }))
                     {
                         <div class="b-search">
                             @Html.TextBox("keyword", "", new { placeholder = "Tìm kiếm" })
@@ -102,7 +102,7 @@
                         <a href="/" class="nav-item nav-link active">Trang chủ</a>
                         @foreach (var category in ViewBag.CategoryList)
                         {
-                            <a href="/Home/SearchByCategory?category=@category.Id" class="nav-item nav-link">@category.Name</a>
+                            <a href="/Home/Search?categoryId=@category.Id" class="nav-item nav-link">@category.Name</a>
                         }
                     </div>
                     <div class="social ml-auto">
