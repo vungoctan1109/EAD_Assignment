@@ -16,7 +16,10 @@
                 <div class="sn-container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <p>Kết quả cho từ khóa "@ViewBag.Keyword" trong thư mục</p>
+                            @if (!String.IsNullOrEmpty(ViewBag.KeyWord))
+                            {
+                                <p>Kết quả cho từ khóa "@ViewBag.Keyword" trong thư mục</p>
+                            }
                         </div>
                         <div class="col-lg-6">
                             <select name="categoryId" id="categoryId" class="form-control" form="myForm" onchange="this.form.submit()">
@@ -35,7 +38,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     @foreach (var item in Model)
                     {
                         <div class="card">
@@ -50,16 +53,16 @@
                         </div>
                     }
                 </div>
-                    @Html.PagedListPager(Model, page => Url.Action("Search",
-                        new { keyword = ViewBag.Keyword, page }),
-                        new PagedListRenderOptions
-                        {
-                            DisplayLinkToIndividualPages = true,
-                            DisplayPageCountAndCurrentLocation = false,
-                            MaximumPageNumbersToDisplay = 10,
-                            LiElementClasses = new string[] { "page-item" }
-                        })
-                </div>
+                @Html.PagedListPager(Model, page => Url.Action("Search",
+                    new { keyword = ViewBag.Keyword, page }),
+                    new PagedListRenderOptions
+                    {
+                        DisplayLinkToIndividualPages = true,
+                        DisplayPageCountAndCurrentLocation = false,
+                        MaximumPageNumbersToDisplay = 10,
+                        LiElementClasses = new string[] { "page-item" }
+                    })
+            </div>
 
             <div class="col-lg-4">
                 <div class="sidebar">
